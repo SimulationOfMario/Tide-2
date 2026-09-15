@@ -1,8 +1,10 @@
 package com.li64.tide.compat;
 
 import com.li64.tide.Tide;
+import com.li64.tide.compat.alexsmobs.AlexsMobsCompat;
 import com.li64.tide.compat.fishingreal.FishingRealCompat;
 import com.li64.tide.compat.hybridaquatic.HybridAquaticCompat;
+import com.li64.tide.data.fishing.FishingContext;
 import com.li64.tide.registries.entities.misc.fishing.HookAccessor;
 import com.li64.tide.registries.entities.misc.fishing.TideFishingHook;
 import net.minecraft.server.level.ServerPlayer;
@@ -90,5 +92,15 @@ public class CompatHelper {
     public static void addInformationItemsFromAccessories(Player player, ArrayList<Item> items) {
         /*? if fabric {*/if (Tide.PLATFORM.isModLoaded("trinkets")) TrinketsCompat.addInformationalItems(player, items);
         /*?} else*//*if (Tide.PLATFORM.isModLoaded("curios")) CuriosCompat.addInformationalItems(player, items);*/
+    }
+
+    // -- alex's mobs --
+
+    public static boolean isAlexsMobsLoaded() {
+        return Tide.PLATFORM.isModLoaded("alexsmobs");
+    }
+
+    public static boolean alexsMobsIsInPupfishChunk(FishingContext context) {
+        return AlexsMobsCompat.isInPupfishChunk(context);
     }
 }

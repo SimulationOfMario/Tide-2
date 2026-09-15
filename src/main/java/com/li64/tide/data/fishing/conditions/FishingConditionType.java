@@ -27,6 +27,7 @@ public interface FishingConditionType<T extends FishingCondition> {
     FishingConditionType<BlockNearbyCondition> BLOCK_NEARBY = register("block_nearby", BlockNearbyCondition.CODEC);
     FishingConditionType<SeasonsCondition> SEASONS = register("seasons", SeasonsCondition.CODEC);
     FishingConditionType<EnchantmentsCondition> HAS_ENCHANTMENTS = register("has_enchantments", EnchantmentsCondition.CODEC);
+    FishingConditionType<ChunkTypeCondition> CHUNK_TYPE = register("chunk_type", ChunkTypeCondition.CODEC);
 
     static void register() {
         Tide.LOG.info("Registering fishing conditions");

@@ -181,6 +181,7 @@ dependencies {
             modstitchModCompileOnly("curse.maven:fishing-real-348834:6475356")
             modstitchModCompileOnly("curse.maven:hybrid-aquatic-834427:8216583")
             modstitchModCompileOnly("software.bernie.geckolib:geckolib-fabric-1.20.1:4.8.2")
+            modstitchModCompileOnly("curse.maven:alexs-mobs-fabric-1472153:8753514")
             modstitchCompileOnly("com.eliotlash.mclib:mclib:20")
             modstitchModCompileOnly("maven.modrinth:9wJhd9x6:HWz0cRcl") // Stardew Fishing Fabric
         }
@@ -211,6 +212,7 @@ dependencies {
             modstitchModCompileOnly("curse.maven:fishing-real-348834:6475355")
             modstitchModCompileOnly("curse.maven:hybrid-aquatic-834427:8216589")
             modstitchModCompileOnly("software.bernie.geckolib:geckolib-forge-1.20.1:4.8.2")
+            modstitchModCompileOnly("curse.maven:alexs-mobs-426558:5698791")
             modstitchCompileOnly("com.eliotlash.mclib:mclib:20")
             modstitchCompileOnly("org.jetbrains:annotations:24.0.0")
         }
