@@ -15,6 +15,7 @@ public class DevilsHoleChunk implements ChunkType {
 
     @Override
     public boolean matches(FishingContext context) {
+        if (CompatHelper.isAlexsMobsLoaded()) return false;
         return CompatHelper.alexsMobsIsInPupfishChunk(context);
     }
 }
