@@ -8,19 +8,21 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
+import java.util.List;
+
 public class ChunkTypeCondition extends FishingCondition {
     public static final MapCodec<ChunkTypeCondition> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-            Codec.STRING.fieldOf("chunk_type").forGetter(ChunkTypeCondition::getChunkTypeId)
+            Codec.STRING.listOf().fieldOf("chunk_types").forGetter(ChunkTypeCondition::getChunkTypesIds)
     ).apply(instance, ChunkTypeCondition::new));
 
-    private final String chunkTypeId;
+    private final List<String> chunkTypesIds;
 
-    public ChunkTypeCondition(String chunkTypeId) {
-        this.chunkTypeId = chunkTypeId;
+    public ChunkTypeCondition(List<String> chunkTypesIds) {
+        this.chunkTypesIds = chunkTypesIds;
     }
 
-    public String getChunkTypeId() {
-        return chunkTypeId;
+    public List<String> getChunkTypesIds() {
+        return chunkTypesIds;
     }
 
     @Override
@@ -30,7 +32,6 @@ public class ChunkTypeCondition extends FishingCondition {
 
     @Override
     public boolean test(FishingContext context) {
-        ChunkType chunkType = ChunkType.get(chunkTypeId);
-        return chunkType != null && chunkType.matches(context);
+        return ChunkType.get(chunkTypesIds).stream().allMatch(ct -> ct.matches(context));
     }
 }

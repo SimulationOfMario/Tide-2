@@ -5,6 +5,7 @@ import net.minecraft.resources.ResourceLocation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public interface ChunkType {
     List<ChunkType> TYPES = new ArrayList<>();
@@ -21,6 +22,14 @@ public interface ChunkType {
         return TYPES.stream()
             .filter(chunkType -> chunkType.id().getPath().equals(id))
             .findFirst().orElse(null);
+    }
+
+    static List<ChunkType> get(List<String> ids) {
+        return ids.stream()
+            .distinct()
+            .map(ChunkType::get)
+            .filter(Objects::nonNull)
+            .toList();
     }
 
     ResourceLocation id();
