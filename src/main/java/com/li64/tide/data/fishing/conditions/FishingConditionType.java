@@ -28,6 +28,7 @@ public interface FishingConditionType<T extends FishingCondition> {
     FishingConditionType<SeasonsCondition> SEASONS = register("seasons", SeasonsCondition.CODEC);
     FishingConditionType<EnchantmentsCondition> HAS_ENCHANTMENTS = register("has_enchantments", EnchantmentsCondition.CODEC);
     FishingConditionType<ChunkTypeCondition> CHUNK_TYPE = register("chunk_type", ChunkTypeCondition.CODEC);
+    FishingConditionType<EffectsCondition> HAS_EFFECTS = register("has_effects", EffectsCondition.CODEC);
 
     static void register() {
         Tide.LOG.info("Registering fishing conditions");
