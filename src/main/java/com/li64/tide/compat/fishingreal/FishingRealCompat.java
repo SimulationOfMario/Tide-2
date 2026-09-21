@@ -12,4 +12,8 @@ public class FishingRealCompat {
         if (entity != null && player.fishing != null) FishingReal.fishUpEntity(entity, player.fishing, stack, player);
         return entity;
     }
+
+    public static boolean hasEntityConversion(ItemStack stack) {
+        return FishingReal.FISHING_MANAGER.getConversionResultFromStack(stack) != null;
+    }
 }

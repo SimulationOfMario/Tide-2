@@ -83,8 +83,16 @@ public class CompatHelper {
 
     // -- fishing real --
 
+    public static boolean isFishingRealLoaded() {
+        return Tide.PLATFORM.isModLoaded("fishingreal");
+    }
+
     public static Entity fishingRealConvertItemStack(ItemStack stack, Player player, Vec3 pos) {
         return FishingRealCompat.convertItemStack(stack, player, pos);
+    }
+
+    public static boolean fishingRealHasEntityConversion(ItemStack stack) {
+        return FishingRealCompat.hasEntityConversion(stack);
     }
 
     // -- curios/trinkets --

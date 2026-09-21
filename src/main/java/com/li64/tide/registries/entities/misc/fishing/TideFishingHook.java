@@ -633,20 +633,22 @@ public class TideFishingHook extends Projectile {
                                 public boolean displayFireAnimation() { return false; }
                                 public void lavaHurt() {}
                             };
-                        } else entity = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), stack);
+                        }
+                        else entity = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), stack);
 
                         double dx = player.getX() - this.getX();
                         double dy = player.getY() - this.getY();
                         double dz = player.getZ() - this.getZ();
-
                         entity.setDeltaMovement(dx * 0.1, dy * 0.11 + Math.sqrt(Math.sqrt(dx * dx + dy * dy + dz * dz)) * 0.08, dz * 0.1);
+
                         if (CompatHelper.isHybridAquaticLoaded() && entity instanceof ItemEntity itemEntity) {
                             entity = CompatHelper.hybridAquaticPullEntity(itemEntity, player, this);
                         }
-                        if (Tide.PLATFORM.isModLoaded("fishingreal") && entity instanceof ItemEntity) {
+
+                        if (CompatHelper.isFishingRealLoaded() && entity instanceof ItemEntity) {
                             //? if forge || neoforge {
                             /*// fishing real handles catches automatically on neo/forge
-                            entity = null;
+                            if (CompatHelper.fishingRealHasEntityConversion(stack)) entity = null;
                             *///?} else {
                             Entity converted = CompatHelper.fishingRealConvertItemStack(stack, player, position());
                             if (converted != null) {
@@ -655,6 +657,7 @@ public class TideFishingHook extends Projectile {
                             }
                             //?}
                         }
+
                         if (entity instanceof ItemEntity) {
                             this.level().addFreshEntity(entity);
                             if (stack.is(ItemTags.FISHES)) player.awardStat(Stats.FISH_CAUGHT, 1);
@@ -663,6 +666,7 @@ public class TideFishingHook extends Projectile {
                         player.level().addFreshEntity(new ExperienceOrb(
                                 player.level(), player.getX(), player.getY() + 0.5, player.getZ() + 0.5,
                                 this.random.nextInt(4) + (this.wasPerfectCatch ? 4 : 1)));
+
                         if (this.rod.is(TideItems.DIAMOND_FISHING_ROD)) player.level().addFreshEntity(new ExperienceOrb(
                                 player.level(), player.getX(), player.getY() + 0.5, player.getZ() + 0.5,
                                 this.random.nextInt(4) + 1));
@@ -679,7 +683,7 @@ public class TideFishingHook extends Projectile {
                             TideUtils.tryLogCatch(stack, serverPlayer);
                         }
                     }
-                    break;
+                break;
 
                 case CRATE:
 
@@ -712,10 +716,10 @@ public class TideFishingHook extends Projectile {
                     if (fluidState.is(TideTags.Fluids.WATER_FISHING) && fluidState.is(Fluids.WATER)) level.setBlockAndUpdate(this.blockPosition(), Blocks.WATER.defaultBlockState());
 
                     TideCriteriaTriggers.PULLED_CRATE.trigger(serverPlayer);
-                    break;
+                break;
 
                 case NOTHING:
-                    break;
+                break;
             }
             i = 1;
         }
