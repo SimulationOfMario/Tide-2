@@ -78,6 +78,12 @@ public class TideLanguageProvider extends FabricLanguageProvider {
         builder.add("text.autoconfig.tide.option.server.general.crateWeight.@Tooltip", "The chance of a crate being selected from the fishing loot table (not a percent, see wiki for more info)");
         builder.add("text.autoconfig.tide.option.server.general.crateQuality", "Crate Luck Scaling");
         builder.add("text.autoconfig.tide.option.server.general.crateQuality.@Tooltip", "The amount that the crate chance is scaled with higher fishing luck (see wiki for more info)");
+        builder.add("text.autoconfig.tide.option.server.general.fishWeight", "Fish Selection Weight");
+        builder.add("text.autoconfig.tide.option.server.general.fishWeight.@Tooltip", "The chance of a fish being selected from the fishing loot table (not a percent, see wiki for more info)");
+        builder.add("text.autoconfig.tide.option.server.general.fishQuality", "Fish Luck Scaling");
+        builder.add("text.autoconfig.tide.option.server.general.fishQuality.@Tooltip", "The amount that the fish chance is scaled with higher fishing luck (see wiki for more info)");
+        builder.add("text.autoconfig.tide.option.server.general.useVanillaJunkFallback", "Use Vanilla Junk Fallback");
+        builder.add("text.autoconfig.tide.option.server.general.useVanillaJunkFallback.@Tooltip", "When enabled, vanilla fishing junk is given when Tide cannot find a valid fishing result (otherwise, nothing is provided)");
         builder.add("text.autoconfig.tide.option.server.general.logDataErrors", "Log Data Loading Errors");
         builder.add("text.autoconfig.tide.option.server.general.logDataErrors.@Tooltip", "For datapackers: enable to show Tide data loading errors in the logs");
 

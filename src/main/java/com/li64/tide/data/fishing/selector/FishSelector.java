@@ -1,5 +1,6 @@
 package com.li64.tide.data.fishing.selector;
 
+import com.li64.tide.Tide;
 import com.li64.tide.data.TideData;
 import com.li64.tide.data.fishing.CatchResult;
 import com.li64.tide.data.fishing.FishingContext;
@@ -12,12 +13,16 @@ import java.util.function.Predicate;
 public class FishSelector implements FishingEntry {
     @Override
     public double weight(FishingContext context) {
-        return FishingEntry.modifyWeight(85, -1, context);
+        return FishingEntry.modifyWeight(
+                Tide.SERVER_CONFIG.general.fishWeight,
+                Tide.SERVER_CONFIG.general.fishQuality,
+                context);
     }
 
     @Override
     public boolean shouldKeep(FishingContext context) {
-        return true;
+        return TideData.FISH.get().values().stream()
+                .anyMatch(fish -> fish.shouldKeep(context) && fish.weight(context) > 0);
     }
 
     @Override

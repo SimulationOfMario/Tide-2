@@ -735,9 +735,12 @@ public class TideFishingHook extends Projectile {
 
         if (result.isEmpty()) {
             Tide.LOG.warn("Could not find a valid catch for this context: {}", context);
-            LootTable table = TideUtils.getLootTable(BuiltInLootTables.FISHING_JUNK, server);
-            List<ItemStack> items = table.getRandomItems(params);
-            this.hookedItems = items.isEmpty() ? List.of() : items;
+            if (Tide.SERVER_CONFIG.general.useVanillaJunkFallback) {
+                LootTable table = TideUtils.getLootTable(BuiltInLootTables.FISHING_JUNK, server);
+                List<ItemStack> items = table.getRandomItems(params);
+                this.hookedItems = items.isEmpty() ? List.of() : items;
+            }
+            else this.hookedItems = List.of();
         }
         else this.hookedItems = result.items();
 

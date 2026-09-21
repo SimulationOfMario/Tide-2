@@ -104,6 +104,15 @@ public final class TideServerConfig implements ConfigData {
         public double crateQuality = 1.0;
 
         @ConfigEntry.Gui.Tooltip
+        public double fishWeight = 85.0;
+
+        @ConfigEntry.Gui.Tooltip
+        public double fishQuality = -1.0;
+
+        @ConfigEntry.Gui.Tooltip
+        public boolean useVanillaJunkFallback = true;
+
+        @ConfigEntry.Gui.Tooltip
         public boolean logDataErrors = false;
 
         @Override
@@ -116,6 +125,9 @@ public final class TideServerConfig implements ConfigData {
                     ", autoFishDataBlacklist=" + autoFishDataBlacklist +
                     ", crateWeight=" + crateWeight +
                     ", crateQuality=" + crateQuality +
+                    ", fishWeight=" + fishWeight +
+                    ", fishQuality=" + fishQuality +
+                    ", useVanillaJunkFallback=" + useVanillaJunkFallback +
                     ", logDataErrors=" + logDataErrors +
                     '}';
         }
