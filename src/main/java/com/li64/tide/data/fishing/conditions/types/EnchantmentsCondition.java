@@ -59,9 +59,7 @@ public class EnchantmentsCondition extends FishingCondition {
         /*Map<Enchantment, Integer> rodEnchantments = EnchantmentHelper.getEnchantments(context.hook().rod());
         *///?}
 
-        // When using 'all', an empty list always results in true.
-
-        return switch (match) {
+        return switch (this.match) {
 
             // Note: When using 'all', if enchantments list is empty, the result is always true.
             case "all" ->
@@ -73,15 +71,15 @@ public class EnchantmentsCondition extends FishingCondition {
                         e.location().equals(BuiltInRegistries.ENCHANTMENT.getKey(e2))));
                 *///?}
 
-            // This applies whether you set it to 'any' or enter something incorrect.
+            // Default always applies whether you set it to 'any' or enter something incorrect.
             // Note: When using 'any', if enchantments list is empty, the result is always false.
             default ->
                 //? if >=1.21 {
-                rodEnchantments.keySet().stream().anyMatch(e -> this.enchantments.stream().anyMatch(e::is));
+                this.enchantments.stream().anyMatch(e -> rodEnchantments.keySet().stream().anyMatch(e2 -> e2.is(e)));
                 //?} else {
-                /*rodEnchantments.keySet().stream().anyMatch(e ->
-                    this.enchantments.stream().anyMatch(e2 ->
-                        e2.location().equals(BuiltInRegistries.ENCHANTMENT.getKey(e))));
+                /*this.enchantments.stream().anyMatch(e ->
+                        rodEnchantments.keySet().stream().anyMatch(e2 ->
+                                e.location().equals(BuiltInRegistries.ENCHANTMENT.getKey(e2))));
                 *///?}
         };
     }
