@@ -24,7 +24,8 @@ public class CrateSelector implements FishingEntry {
 
     @Override
     public boolean shouldKeep(FishingContext context) {
-        return getResult(context).isPresent();
+        return TideData.CRATES.get().values().stream()
+                .anyMatch(crate -> crate.shouldKeep(context) && crate.weight(context) > 0);
     }
 
     @Override

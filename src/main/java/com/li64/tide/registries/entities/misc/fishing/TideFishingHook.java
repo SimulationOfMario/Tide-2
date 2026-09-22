@@ -601,6 +601,7 @@ public class TideFishingHook extends Projectile {
     public int retrieve(ItemStack rod, ServerLevel level, Player player) {
         if (player == null || player.fishing == null || !(player instanceof ServerPlayer serverPlayer)) return 0;
         if (this.level().isClientSide || !shouldKeepFishing(player)) return 0;
+
         int i = 0;
         if (this.getHookedIn() != null) {
             this.pullEntity(this.getHookedIn());
@@ -609,7 +610,7 @@ public class TideFishingHook extends Projectile {
             i = this.getHookedIn() instanceof ItemEntity ? 3 : 5;
         }
         else if (nibble > 0) {
-            if (!hasHookedItem()) catchType = CatchType.NOTHING;
+            if (!hasHookedItem() && catchType != CatchType.CRATE) catchType = CatchType.NOTHING;
 
             switch (catchType) {
                 case FISH, ITEM:
@@ -723,6 +724,7 @@ public class TideFishingHook extends Projectile {
             }
             i = 1;
         }
+
         if (this.onGround()) i = 2;
         this.startRetrieving();
 
