@@ -6,9 +6,6 @@ import com.li64.tide.data.fishing.conditions.FishingConditionType;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.item.enchantment.Enchantment;
 
 import java.util.List;
 
@@ -16,26 +13,26 @@ import java.util.List;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 //?} else {
-/*import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.core.registries.BuiltInRegistries;
+/*import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import java.util.Map;
 *///?}
 
 public class EnchantmentsCondition extends FishingCondition {
     public static final MapCodec<EnchantmentsCondition> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-            ResourceKey.codec(Registries.ENCHANTMENT).listOf().optionalFieldOf("enchantments",List.of()).forGetter(EnchantmentsCondition::getEnchantments),
+            EnchantmentRequirement.CODEC.listOf().optionalFieldOf("enchantments", List.of()).forGetter(EnchantmentsCondition::getEnchantments),
             Codec.STRING.optionalFieldOf("match", "any").forGetter(EnchantmentsCondition::getMatch)
     ).apply(instance, EnchantmentsCondition::new));
 
-    private final List<ResourceKey<Enchantment>> enchantments;
+    private final List<EnchantmentRequirement> enchantments;
     private final String match;
 
-    public EnchantmentsCondition(List<ResourceKey<Enchantment>> enchantments, String match) {
+    public EnchantmentsCondition(List<EnchantmentRequirement> enchantments, String match) {
         this.enchantments = enchantments;
         this.match = match;
     }
 
-    public List<ResourceKey<Enchantment>> getEnchantments() {
+    public List<EnchantmentRequirement> getEnchantments() {
         return enchantments;
     }
 
@@ -49,7 +46,6 @@ public class EnchantmentsCondition extends FishingCondition {
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public boolean test(FishingContext context) {
         if (context.hook() == null || context.hook().rod() == null || context.hook().rod().isEmpty()) return false;
 
@@ -63,24 +59,19 @@ public class EnchantmentsCondition extends FishingCondition {
 
             // Note: When using 'all', if enchantments list is empty, the result is always true.
             case "all" ->
-                //? if >=1.21 {
-                this.enchantments.stream().allMatch(e -> rodEnchantments.keySet().stream().anyMatch(e2 -> e2.is(e)));
-                //?} else {
-                /*this.enchantments.stream().allMatch(e ->
-                    rodEnchantments.keySet().stream().anyMatch(e2 ->
-                        e.location().equals(BuiltInRegistries.ENCHANTMENT.getKey(e2))));
-                *///?}
+                this.enchantments.stream().allMatch(e -> anyMatches(e, rodEnchantments));
 
             // Default always applies whether you set it to 'any' or enter something incorrect.
             // Note: When using 'any', if enchantments list is empty, the result is always false.
             default ->
-                //? if >=1.21 {
-                this.enchantments.stream().anyMatch(e -> rodEnchantments.keySet().stream().anyMatch(e2 -> e2.is(e)));
-                //?} else {
-                /*this.enchantments.stream().anyMatch(e ->
-                        rodEnchantments.keySet().stream().anyMatch(e2 ->
-                                e.location().equals(BuiltInRegistries.ENCHANTMENT.getKey(e2))));
-                *///?}
+                this.enchantments.stream().anyMatch(e -> anyMatches(e, rodEnchantments));
         };
+    }
+
+    private boolean anyMatches(EnchantmentRequirement requirement,
+                               /*? if >=1.21 {*/ ItemEnchantments /*?} else {*/ /*Map<Enchantment, Integer> *//*?}*/ candidates)
+    {
+        return candidates.entrySet().stream().anyMatch(entry ->
+                    requirement.matches(entry.getKey(), /*? if >=1.21 {*/ entry.getIntValue() /*?} else {*/ /*entry.getValue() *//*?}*/));
     }
 }
