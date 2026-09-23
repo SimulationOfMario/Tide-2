@@ -3,6 +3,7 @@ package com.li64.tide.data.fishing.selector;
 import com.li64.tide.Tide;
 import com.li64.tide.data.TideData;
 import com.li64.tide.data.fishing.CatchResult;
+import com.li64.tide.data.fishing.CrateSelectorData;
 import com.li64.tide.data.fishing.FishingContext;
 import com.li64.tide.registries.TideItems;
 import com.li64.tide.util.BaitUtils;
@@ -18,8 +19,16 @@ public class CrateSelector implements FishingEntry {
     @Override
     public double weight(FishingContext context) {
         boolean hasMagneticBait = context.rod() != null && BaitUtils.hasBait(TideItems.MAGNETIC_BAIT, context.rod());
+
         double weight = Tide.SERVER_CONFIG.general.crateWeight * (hasMagneticBait ? MAGNETIC_BAIT_BONUS : 1.0);
-        return FishingEntry.modifyWeight(weight, Tide.SERVER_CONFIG.general.crateQuality, context);
+        weight = FishingEntry.modifyWeight(weight, Tide.SERVER_CONFIG.general.crateQuality, context);
+
+        for (CrateSelectorData rule : TideData.CRATE_SELECTOR.get().values()) {
+            weight = rule.apply(weight, context);
+            if (weight <= 0) return 0;
+        }
+
+        return weight;
     }
 
     @Override

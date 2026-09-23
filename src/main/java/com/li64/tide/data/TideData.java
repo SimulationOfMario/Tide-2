@@ -1,6 +1,7 @@
 package com.li64.tide.data;
 
 import com.li64.tide.data.fishing.CrateData;
+import com.li64.tide.data.fishing.CrateSelectorData;
 import com.li64.tide.data.fishing.FishingLootData;
 import com.li64.tide.data.loaders.AbstractDataLoader;
 import com.li64.tide.data.loaders.FishDataLoader;
@@ -22,6 +23,7 @@ public class TideData {
     public static FishDataLoader FISH = registerDataLoader(new FishDataLoader("fishing/fish"));
     public static LayeredDataLoader<FishingLootData> FISHING_LOOT = registerDataLoader(LayeredDataLoader.of("fishing/loot", FishingLootData.CODEC));
     public static LayeredDataLoader<CrateData> CRATES = registerDataLoader(LayeredDataLoader.of("fishing/crates", CrateData.CODEC));
+    public static LayeredDataLoader<CrateSelectorData> CRATE_SELECTOR = registerDataLoader(LayeredDataLoader.of("fishing/crate_selector", CrateSelectorData.CODEC));
     public static FlatDataLoader<BaitData> BAIT = registerDataLoader(FlatDataLoader.of("bait", BaitData.CODEC));
     public static FlatDataLoader<AccessoryData> ACCESSORIES = registerDataLoader(FlatDataLoader.of("rod_accessories", AccessoryData.CODEC));
 
