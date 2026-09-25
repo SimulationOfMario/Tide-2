@@ -189,8 +189,7 @@ public class TideItemTagsProvider extends FabricTagProvider<Item> {
 
         /* Common tags */
 
-        getOrCreateTagBuilder(TagKey.create(Registries.ITEM, Tide.resource("forge", "tools/fishing_rods")))
-                .forceAddTag(TideTags.Items.FISHING_RODS);
+        getOrCreateTagBuilder(TideTags.Forge.FISHING_RODS).forceAddTag(TideTags.Items.FISHING_RODS);
 
         getOrCreateTagBuilder(ItemTags.FISHES).forceAddTag(TideTags.Items.FISH);
 
@@ -198,7 +197,15 @@ public class TideItemTagsProvider extends FabricTagProvider<Item> {
                 .addTag(TideTags.Items.COOKABLE_FISH)
                 .add(TideItems.FISH_SLICE);
 
+        getOrCreateTagBuilder(TideTags.Forge.RAW_FISHES_FOODS)
+                .addTag(TideTags.Items.COOKABLE_FISH)
+                .add(TideItems.FISH_SLICE);
+
         getOrCreateTagBuilder(TideTags.Convention.COOKED_FISH_FOODS)
+                .addTag(TideTags.Items.COOKED_FISH)
+                .add(TideItems.COOKED_FISH_SLICE);
+
+        getOrCreateTagBuilder(TideTags.Forge.COOKED_FISHES_FOODS)
                 .addTag(TideTags.Items.COOKED_FISH)
                 .add(TideItems.COOKED_FISH_SLICE);
 

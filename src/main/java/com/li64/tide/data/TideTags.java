@@ -56,6 +56,7 @@ public class TideTags {
         public static final TagKey<Fluid> WATER_FISHING = TagKey.create(Registries.FLUID, Tide.resource("types/water_fishing"));
         public static final TagKey<Fluid> LAVA_FISHING = TagKey.create(Registries.FLUID, Tide.resource("types/lava_fishing"));
     }
+
     public static class Entities {
         public static final TagKey<EntityType<?>> IGNORES_POCKET_WATCH = TagKey.create(Registries.ENTITY_TYPE, Tide.resource("ignores_pocket_watch"));
     }
@@ -159,6 +160,18 @@ public class TideTags {
 
         public static <T> TagKey<T> create(String id, ResourceKey<Registry<T>> registryKey) {
             return TagKey.create(registryKey, Tide.resource("c", id));
+        }
+    }
+
+    public static class Forge {
+
+        public static final TagKey<Item> FISHING_RODS = create("tools/fishing_rods", Registries.ITEM);
+
+        public static final TagKey<Item> RAW_FISHES_FOODS = create("raw_fishes", Registries.ITEM);
+        public static final TagKey<Item> COOKED_FISHES_FOODS = create("cooked_fishes", Registries.ITEM);
+
+        public static <T> TagKey<T> create(String id, ResourceKey<Registry<T>> registryKey) {
+            return TagKey.create(registryKey, Tide.resource("forge", id));
         }
     }
 }
