@@ -646,7 +646,10 @@ public class TideLanguageProvider extends FabricLanguageProvider {
 
         // Command responses
 
-        builder.add("commands.journal.lock", "Locked all fish for %s");
+        builder.add("commands.journal.reset", "Locked fish \"%s\" for %s");
+        builder.add("commands.journal.reset.fail", "\"%s\" is not in the fishing journal");
+        builder.add("commands.journal.reset.already_reset", "Fish \"%s\" is already locked");
+        builder.add("commands.journal.reset_all", "Locked all fish for %s");
         builder.add("commands.journal.unlock", "Unlocked fish \"%s\" for %s");
         builder.add("commands.journal.unlock.fail", "\"%s\" is not in the fishing journal");
         builder.add("commands.journal.unlock.already_unlocked", "Fish \"%s\" is already unlocked");

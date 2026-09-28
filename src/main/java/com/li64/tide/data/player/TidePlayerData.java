@@ -117,6 +117,14 @@ public class TidePlayerData {
         return true;
     }
 
+    public boolean resetFish(Holder<Item> fish) {
+        return fishPlayerData.remove(fish) != null;
+    }
+
+    public void resetAllFish() {
+        fishPlayerData.clear();
+    }
+
     public void markAsRead(ItemStack stack) {
         Holder<Item> fish = stack.getItemHolder();
         if (!fishPlayerData.containsKey(fish)) return;
