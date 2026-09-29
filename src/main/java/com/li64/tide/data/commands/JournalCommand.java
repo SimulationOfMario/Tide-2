@@ -33,7 +33,7 @@ public class JournalCommand {
         ItemStack fish = fishItem.getDefaultInstance();
         if (source.getPlayer() == null) return 0;
         if (!TideUtils.isJournalFish(fish)) {
-            source.sendFailure(Component.translatable("commands.journal.unlock.fail", fish.getHoverName().getString()));
+            source.sendFailure(Component.translatable("commands.journal.fail", fish.getHoverName().getString()));
             return 0;
         }
 
@@ -67,7 +67,7 @@ public class JournalCommand {
         ItemStack fish = fishItem.getDefaultInstance();
         if (source.getPlayer() == null) return 0;
         if (!TideUtils.isJournalFish(fish)) {
-            source.sendFailure(Component.translatable("commands.journal.reset.fail", fish.getHoverName().getString()));
+            source.sendFailure(Component.translatable("commands.journal.fail", fish.getHoverName().getString()));
             return 0;
         }
 
