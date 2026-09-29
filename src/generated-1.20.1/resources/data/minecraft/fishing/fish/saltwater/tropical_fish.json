@@ -21,8 +21,11 @@
   ],
   "display_data": {
     "entity": "minecraft:tropical_fish",
+    "nbt": {
+      "Variant": 65538
+    },
     "x": 0.05,
-    "y": -0.08
+    "y": 0.08
   },
   "fish": "minecraft:tropical_fish",
   "journal_profile": {

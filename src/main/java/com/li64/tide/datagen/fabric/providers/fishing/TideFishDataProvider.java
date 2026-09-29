@@ -16,6 +16,7 @@ import com.mojang.serialization.Codec;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import org.jetbrains.annotations.NotNull;
@@ -98,9 +99,13 @@ public class TideFishDataProvider extends SimpleDataProvider<FishData> {
                 .overworld().water().surface().saltwater()
                 .journalLocation("journal.info.location.saltwater")
                 .journalGroup(JournalGroup.SALTWATER)
-                .displayData(display -> display
-                        .offsets(0.05f, -0.08f, 0f)
-                        .rotation(0f, 0f, 0f))
+                .displayData(display -> {
+                    CompoundTag nbt = new CompoundTag();
+                    nbt.putInt("Variant", 65538);
+                    display.nbt(nbt)
+                        .offsets(0.05f, 0.08f, 0f)
+                        .rotation(0f, 0f, 0f);
+                })
                 .build(output);
 
         // modded fish data
