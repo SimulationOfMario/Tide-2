@@ -2,6 +2,7 @@
    "package": "com.li64.tide.mixin",
    "required": true,
    "minVersion": "0.8",
+   "refmap": "tide.refmap.json",
    "injectors": {
       "defaultRequire": 1
    },

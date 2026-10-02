@@ -14,11 +14,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class GuiRenderMixin {
     //? if >=1.21 {
     @Inject(at = @At(value = "TAIL"), method = "render")
-    public void render(GuiGraphics graphics, DeltaTracker deltaTracker, CallbackInfo ci) {
+    public void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker, CallbackInfo ci) {
     //?} else {
     /*@Inject(at = @At(value = "TAIL"), method = "render")
-    public void render(GuiGraphics graphics, float partialTick, CallbackInfo ci) {
+    public void render(GuiGraphics guiGraphics, float partialTick, CallbackInfo ci) {
     *///?}
-        TideGuiOverlays.render(graphics);
+        TideGuiOverlays.render(guiGraphics);
     }
 }
