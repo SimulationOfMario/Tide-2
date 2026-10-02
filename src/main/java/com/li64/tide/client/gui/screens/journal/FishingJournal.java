@@ -418,7 +418,12 @@ public class FishingJournal extends Screen {
 
         graphics.pose().pushPose();
 
+        //? fabric {
         model.getTransforms().getTransform(ItemDisplayContext.GUI).apply(false, graphics.pose());
+        //?} else {
+        /*model = model.applyTransform(ItemDisplayContext.GUI, graphics.pose(), false);
+        *///?}
+
         graphics.pose().translate(-0.5F, -0.5F, -0.5F);
 
         RenderType renderType = TideRenderTypes.singleColorItem();
