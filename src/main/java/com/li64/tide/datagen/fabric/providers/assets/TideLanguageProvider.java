@@ -633,6 +633,7 @@ public class TideLanguageProvider extends FabricLanguageProvider {
         builder.add("journal.info.dimensions.overworld", "Overworld");
         builder.add("journal.info.dimensions.the_nether", "The Nether");
         builder.add("journal.info.dimensions.the_end", "The End");
+        builder.add("journal.info.dimensions.the_aether", "The Aether");
         builder.add("journal.info.weather.title", "Weather");
         builder.add("journal.info.weather.clear", "Clear");
         builder.add("journal.info.weather.rain", "Rain");

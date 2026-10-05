@@ -8,6 +8,7 @@ import com.li64.tide.data.fishing.conditions.types.FishingMediumCondition;
 import com.li64.tide.data.fishing.mediums.FishingMedium;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -18,8 +19,9 @@ import java.util.List;
 
 public class DimensionsComponent extends ProfileComponent {
     private static final ResourceLocation DIMENSIONS = Tide.resource("textures/gui/journal/dimensions.png");
+    private static final String CUSTOM_DIMENSION_TEXTURE_PATH = "textures/gui/journal/dimensions/";
     private static final Component TITLE = Component.translatable("journal.info.dimensions.title");
-
+    
     public List<ResourceKey<Level>> dimensions;
 
     public static boolean shouldCreate(DimensionsCondition condition, List<FishingCondition> others) {
@@ -47,16 +49,29 @@ public class DimensionsComponent extends ProfileComponent {
             int cellSize = 10 + padding;
             int spriteX = center - ((count - 1) * cellSize / 2) + (i * cellSize) - 4;
 
-            int offset = getOffset(dimensions.get(i));
-            graphics.blit(DIMENSIONS, spriteX, spriteY, offset, 0, 10, 10, 30, 10);
+            ResourceKey<Level> dimension = dimensions.get(i);
+
+            if (isVanillaDimension(dimension))
+                graphics.blit(DIMENSIONS, spriteX, spriteY, getOffset(dimension), 0, 10, 10, 30, 10);
+            else graphics.blit(getCustomDimensionTexture(dimension), spriteX, spriteY, 0, 0, 10, 10, 10, 10);
 
             if (mouseX >= spriteX && mouseX <= spriteX + 10 && mouseY >= spriteY && mouseY <= spriteY + 10)
-                graphics.renderTooltip(font, Component.translatable("journal.info.dimensions." + dimensions.get(i).location().getPath()), mouseX, mouseY);
+                graphics.renderTooltip(
+                        font,
+                        Component.translatableWithFallback("journal.info.dimensions." + dimension.location().getPath(), dimension.location().toString()),
+                        mouseX, mouseY
+                );
         }
     }
 
     public static boolean isKnown(ResourceKey<Level> dimension) {
-        return getOffset(dimension) >= 0;
+        if (isVanillaDimension(dimension)) return true;
+
+        return Minecraft.getInstance().getResourceManager().getResource(getCustomDimensionTexture(dimension)).isPresent();
+    }
+
+    private static boolean isVanillaDimension(ResourceKey<Level> dimension) {
+        return dimension == Level.OVERWORLD || dimension == Level.NETHER || dimension == Level.END;
     }
 
     public static int getOffset(ResourceKey<Level> dimension) {
@@ -64,6 +79,16 @@ public class DimensionsComponent extends ProfileComponent {
         if (dimension == Level.NETHER) return 10;
         if (dimension == Level.END) return 20;
         return -1;
+    }
+
+    private static ResourceLocation getCustomDimensionTexture(ResourceKey<Level> dimension) {
+        ResourceLocation location = dimension.location();
+
+        //? if >=1.21 {
+        return ResourceLocation.fromNamespaceAndPath(location.getNamespace(), CUSTOM_DIMENSION_TEXTURE_PATH + location.getPath() + ".png");
+        //?} else {
+        /*return new ResourceLocation(location.getNamespace(), CUSTOM_DIMENSION_TEXTURE_PATH + location.getPath() + ".png");
+        *///?}
     }
 
     @Override
