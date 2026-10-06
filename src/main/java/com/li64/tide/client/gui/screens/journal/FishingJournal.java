@@ -290,7 +290,7 @@ public class FishingJournal extends Screen {
                             Tide.NETWORK.sendToServer(new ReadProfileMsg(stack));
                         }
                         if (isUnlocked) {
-                            graphics.renderTooltip(this.font, stack.getHoverName(), mouseX, mouseY);
+                            graphics.renderTooltip(this.font, TideUtils.removeRawTextInName(stack.getHoverName()), mouseX, mouseY);
                             if (didClick && !updatePage) {
                                 activeFish = stack;
                                 updatePage = true;

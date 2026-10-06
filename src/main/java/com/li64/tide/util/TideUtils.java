@@ -47,7 +47,7 @@ public class TideUtils {
 
     public static Component removeRawTextInName(Component initialName) {
         String toReplace = Component.translatable("journal.remove_from_names").getString();
-        String filtered = Component.translatable(initialName.getString()).getString().replace(toReplace, "");
+        String filtered = Component.translatable(initialName.getString()).getString().replace(toReplace, "").replace(toReplace.toLowerCase(), "").trim();
         return Component.literal(filtered.substring(0, 1).toUpperCase() + filtered.substring(1));
     }
 
