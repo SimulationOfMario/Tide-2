@@ -1,0 +1,29 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "aether:skyroot_bucket",
+      "required": false
+    },
+    {
+      "id": "aether:skyroot_water_bucket",
+      "required": false
+    },
+    {
+      "id": "aether:skyroot_cod_bucket",
+      "required": false
+    },
+    {
+      "id": "aether:skyroot_salmon_bucket",
+      "required": false
+    },
+    {
+      "id": "aether:skyroot_pufferfish_bucket",
+      "required": false
+    },
+    {
+      "id": "aether:skyroot_tropical_fish_bucket",
+      "required": false
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "jellyfishing:jellyfish_net",
+      "required": false
+    },
+    {
+      "id": "jellyfishing:net_of_jellyfish",
+      "required": false
+    },
+    {
+      "id": "jellyfishing:net_of_blue_jellyfish",
+      "required": false
+    },
+    {
+      "id": "jellyfishing:net_of_bubble_jellyfish",
+      "required": false
+    },
+    {
+      "id": "jellyfishing:net_of_cow_jellyfish",
+      "required": false
+    },
+    {
+      "id": "jellyfishing:net_of_two_fisted_jumper",
+      "required": false
+    },
+    {
+      "id": "jellyfishing:net_of_grease_jellyfish",
+      "required": false
+    }
+  ]
+}

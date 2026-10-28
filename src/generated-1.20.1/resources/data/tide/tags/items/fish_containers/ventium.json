@@ -1,0 +1,37 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "blue_skies:ventium_bucket",
+      "required": false
+    },
+    {
+      "id": "blue_skies:ventium_water_bucket",
+      "required": false
+    },
+    {
+      "id": "blue_skies:ventium_lava_bucket",
+      "required": false
+    },
+    {
+      "id": "blue_skies:ventium_charscale_moki_bucket",
+      "required": false
+    },
+    {
+      "id": "blue_skies:ventium_drifter_bucket",
+      "required": false
+    },
+    {
+      "id": "blue_skies:ventium_grittle_flatfish_bucket",
+      "required": false
+    },
+    {
+      "id": "blue_skies:ventium_horizofin_tunid_bucket",
+      "required": false
+    },
+    {
+      "id": "blue_skies:ventium_municipal_monkfish_bucket",
+      "required": false
+    }
+  ]
+}

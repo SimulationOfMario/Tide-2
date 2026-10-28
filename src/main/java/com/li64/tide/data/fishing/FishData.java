@@ -18,6 +18,7 @@ import com.li64.tide.data.fishing.selector.FishingEntry;
 import com.li64.tide.data.journal.FishRarity;
 import com.li64.tide.data.journal.JournalGroup;
 import com.li64.tide.util.TideUtils;
+import com.mojang.datafixers.util.Either;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;
@@ -50,7 +51,7 @@ import java.util.function.Consumer;
 
 public record FishData(/*? if >=1.21 {*/ Holder<Item> fish,
                        /*?} else*//*ResourceKey<Item> fishKey,*/
-                       Optional<Holder<Item>> bucket,
+                       List<Holder<Item>> buckets,
                        List<String> associatedMods,
                        boolean showInJournal,
                        List<FishingCondition> conditions,
@@ -68,10 +69,24 @@ public record FishData(/*? if >=1.21 {*/ Holder<Item> fish,
     private static Map<Item, FishData> FISH_BY_BUCKET;
     private static Map<Item, List<FishData>> MERGER_MAP;
 
+    private static final Codec<List<Holder<Item>>> BUCKETS_CODEC = Codec.either(ResourceLocation.CODEC, ResourceLocation.CODEC.listOf())
+        .xmap(
+            either -> either.map(List::of, list -> list)
+                .stream()
+                .<Holder<Item>>flatMap(id -> BuiltInRegistries.ITEM.getHolder(ResourceKey.create(Registries.ITEM, id)).stream())
+                .toList(),
+            list -> {
+                List<ResourceLocation> ids = list.stream().map(TideUtils::holderId).toList();
+                return ids.size() == 1
+                        ? Either.left(ids.get(0))
+                        : Either.right(ids);
+            }
+        );
+
     public static final Codec<FishData> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             /*? if >=1.21 {*/BuiltInRegistries.ITEM.holderByNameCodec().fieldOf("fish").forGetter(FishData::fish),
             /*?} else*//*ResourceKey.codec(Registries.ITEM).fieldOf("fish").forGetter(FishData::fishKey),*/
-            BuiltInRegistries.ITEM.holderByNameCodec().optionalFieldOf("bucket").forGetter(FishData::bucket),
+            BUCKETS_CODEC.optionalFieldOf("bucket", List.of()).forGetter(FishData::buckets),
             Codec.STRING.listOf().optionalFieldOf("associated_mods", List.of()).forGetter(FishData::associatedMods),
             Codec.BOOL.optionalFieldOf("show_in_journal", true).forGetter(FishData::showInJournal),
             FishingCondition.CODEC.listOf().optionalFieldOf("conditions", List.of()).forGetter(FishData::conditions),
@@ -103,7 +118,7 @@ public record FishData(/*? if >=1.21 {*/ Holder<Item> fish,
             if (parentData.isEmpty()) return;
             mergers.forEach(data -> {
                 FISH_BY_ITEM.put(data.fish().value(), parentData.get());
-                data.bucket().ifPresent(bucket -> FISH_BY_BUCKET.put(bucket.value(), parentData.get()));
+                data.buckets().forEach(bucket -> FISH_BY_BUCKET.put(bucket.value(), parentData.get()));
             });
         });
     }
@@ -120,7 +135,7 @@ public record FishData(/*? if >=1.21 {*/ Holder<Item> fish,
             return;
         }
         FISH_BY_ITEM.put(data.fish().value(), data);
-        data.bucket().ifPresent(bucket -> FISH_BY_BUCKET.put(bucket.value(), data));
+        data.buckets().forEach(bucket -> FISH_BY_BUCKET.put(bucket.value(), data));
     }
 
     public static Optional<FishData> get(ItemStack fish) {
@@ -214,7 +229,7 @@ public record FishData(/*? if >=1.21 {*/ Holder<Item> fish,
         ItemStack stack = new ItemStack(fish().value());
         if (Tide.SERVER_CONFIG.items.fishItemSizes == TideServerConfig.Items.SizeMode.ALWAYS && size().isPresent())
             TideItemData.FISH_LENGTH.set(stack, this.getRandomLength(context.rng()));
-        if (Tide.SERVER_CONFIG.items.bucketableFishItems == TideServerConfig.Items.BucketableMode.WHEN_LIVING && bucket().isPresent())
+        if (Tide.SERVER_CONFIG.items.bucketableFishItems == TideServerConfig.Items.BucketableMode.WHEN_LIVING && !buckets().isEmpty())
             TideItemData.IS_BUCKETABLE.set(stack, true);
         return createResult(stack);
     }
@@ -247,7 +262,7 @@ public record FishData(/*? if >=1.21 {*/ Holder<Item> fish,
 
     public static class Builder {
         private Holder<Item> fish;
-        private Holder<Item> bucket;
+        private final List<Holder<Item>> buckets = new ArrayList<>();
         private Holder<Item> parent;
 
         private final ProfileData.Builder profile = ProfileData.builder();
@@ -279,7 +294,13 @@ public record FishData(/*? if >=1.21 {*/ Holder<Item> fish,
         }
 
         public Builder bucket(Item bucket) {
-            this.bucket = BuiltInRegistries.ITEM.wrapAsHolder(bucket);
+            this.buckets.add(BuiltInRegistries.ITEM.wrapAsHolder(bucket));
+            return this;
+        }
+
+        public Builder bucket(String namespace, String path) {
+            ResourceKey<Item> key = ResourceKey.create(Registries.ITEM, Tide.resource(namespace, path));
+            this.buckets.add(Holder.Reference.createStandAlone(BuiltInRegistries.ITEM.holderOwner(), key));
             return this;
         }
 
@@ -478,7 +499,7 @@ public record FishData(/*? if >=1.21 {*/ Holder<Item> fish,
                     /*fish.unwrap().map(Function.identity(), item ->
                             BuiltInRegistries.ITEM.getResourceKey(item).orElseThrow()),
                     *///?}
-                    Optional.ofNullable(bucket),
+                    List.copyOf(buckets),
                     List.of(), true,
                     ImmutableList.copyOf(conditions),
                     ImmutableList.copyOf(modifiers),

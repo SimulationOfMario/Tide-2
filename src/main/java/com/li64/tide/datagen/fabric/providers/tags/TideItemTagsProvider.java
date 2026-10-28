@@ -243,6 +243,33 @@ public class TideItemTagsProvider extends FabricTagProvider<Item> {
 
         getOrCreateTagBuilder(TagKey.create(Registries.ITEM, Tide.resource(CompatHelper.Namespace.STARDEW_FISHING, "legendary_fish")))
                 .addTag(TideTags.Items.LEGENDARY_FISH);
+
+        getOrCreateTagBuilder(TideTags.Items.SKYROOT_FISH_CONTAINERS)
+                .addOptional(Tide.resource(CompatHelper.Namespace.AETHER, "skyroot_bucket"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.AETHER, "skyroot_water_bucket"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.AETHER, "skyroot_cod_bucket"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.AETHER, "skyroot_salmon_bucket"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.AETHER, "skyroot_pufferfish_bucket"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.AETHER, "skyroot_tropical_fish_bucket"));
+
+        getOrCreateTagBuilder(TideTags.Items.VENTIUM_FISH_CONTAINERS)
+                .addOptional(Tide.resource(CompatHelper.Namespace.BLUE_SKIES, "ventium_bucket"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.BLUE_SKIES, "ventium_water_bucket"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.BLUE_SKIES, "ventium_lava_bucket"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.BLUE_SKIES, "ventium_charscale_moki_bucket"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.BLUE_SKIES, "ventium_drifter_bucket"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.BLUE_SKIES, "ventium_grittle_flatfish_bucket"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.BLUE_SKIES, "ventium_horizofin_tunid_bucket"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.BLUE_SKIES, "ventium_municipal_monkfish_bucket"));
+
+        getOrCreateTagBuilder(TideTags.Items.JELLYFISH_NET_FISH_CONTAINERS)
+                .addOptional(Tide.resource(CompatHelper.Namespace.JELLYFISHING, "jellyfish_net"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.JELLYFISHING, "net_of_jellyfish"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.JELLYFISHING, "net_of_blue_jellyfish"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.JELLYFISHING, "net_of_bubble_jellyfish"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.JELLYFISHING, "net_of_cow_jellyfish"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.JELLYFISHING, "net_of_two_fisted_jumper"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.JELLYFISHING, "net_of_grease_jellyfish"));
     }
 }
 //?}

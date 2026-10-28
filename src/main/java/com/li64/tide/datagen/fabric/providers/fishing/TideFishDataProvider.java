@@ -1,6 +1,7 @@
 //? if fabric {
 package com.li64.tide.datagen.fabric.providers.fishing;
 
+import com.li64.tide.compat.CompatHelper;
 import com.li64.tide.compat.fishofthieves.FishOfThievesFishData;
 import com.li64.tide.compat.hybridaquatic.HybridAquaticFishData;
 import com.li64.tide.compat.netherdepths.NetherDepthsFishData;
@@ -51,6 +52,7 @@ public class TideFishDataProvider extends SimpleDataProvider<FishData> {
         // vanilla fish data
 
         FishData.builder().fish(Items.SALMON).bucket(Items.SALMON_BUCKET)
+                .bucket(CompatHelper.Namespace.AETHER, "skyroot_salmon_bucket")
                 .size(55.0, 95.0, 145.0)
                 .strength(0.4f).speed(0.9f)
                 .selectionWeight(40)
@@ -65,6 +67,7 @@ public class TideFishDataProvider extends SimpleDataProvider<FishData> {
                 .build(output);
 
         FishData.builder().fish(Items.COD).bucket(Items.COD_BUCKET)
+                .bucket(CompatHelper.Namespace.AETHER, "skyroot_cod_bucket")
                 .size(65.0, 115.0, 200.0)
                 .strength(0.5f).speed(1.0f)
                 .selectionWeight(55)
@@ -78,6 +81,7 @@ public class TideFishDataProvider extends SimpleDataProvider<FishData> {
                 .build(output);
 
         FishData.builder().fish(Items.PUFFERFISH).bucket(Items.PUFFERFISH_BUCKET)
+                .bucket(CompatHelper.Namespace.AETHER, "skyroot_pufferfish_bucket")
                 .size(12.0, 22.0, 75.0)
                 .strength(0.6f).speed(1.25f)
                 .selectionWeight(25)
@@ -92,6 +96,7 @@ public class TideFishDataProvider extends SimpleDataProvider<FishData> {
                 .build(output);
 
         FishData.builder().fish(Items.TROPICAL_FISH).bucket(Items.TROPICAL_FISH_BUCKET)
+                .bucket(CompatHelper.Namespace.AETHER, "skyroot_tropical_fish_bucket")
                 .size(10.0, 35.0, 100.0)
                 .strength(0.4f).speed(1.1f)
                 .selectionWeight(50)

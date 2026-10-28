@@ -42,6 +42,9 @@ public class CompatHelper {
         public static final String BIOMES_O_PLENTY = "biomesoplenty";
         public static final String VISUAL_WORKBENCH = "visualworkbench";
         public static final String ALEXS_MOBS = "alexsmobs";
+        public static final String AETHER = "aether";
+        public static final String BLUE_SKIES = "blue_skies";
+        public static final String JELLYFISHING = "jellyfishing";
     }
 
     // -- hybrid aquatic --

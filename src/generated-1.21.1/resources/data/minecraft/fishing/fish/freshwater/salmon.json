@@ -1,5 +1,8 @@
 {
-  "bucket": "minecraft:salmon_bucket",
+  "bucket": [
+    "minecraft:salmon_bucket",
+    "aether:skyroot_salmon_bucket"
+  ],
   "conditions": [
     {
       "type": "tide:seasons",

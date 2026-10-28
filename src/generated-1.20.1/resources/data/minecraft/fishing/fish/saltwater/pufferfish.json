@@ -1,5 +1,8 @@
 {
-  "bucket": "minecraft:pufferfish_bucket",
+  "bucket": [
+    "minecraft:pufferfish_bucket",
+    "aether:skyroot_pufferfish_bucket"
+  ],
   "conditions": [
     {
       "type": "tide:dimension",

@@ -44,6 +44,10 @@ public class TideTags {
         public static final TagKey<Item> LAVA_FISHING_RODS = TagKey.create(Registries.ITEM, Tide.resource("lava_fishing_rods"));
 
         public static final TagKey<Item> LAVA_BUCKETS = TagKey.create(Registries.ITEM, Tide.resource("lava_buckets"));
+
+        public static final TagKey<Item> SKYROOT_FISH_CONTAINERS = TagKey.create(Registries.ITEM, Tide.resource("fish_containers/skyroot"));
+        public static final TagKey<Item> VENTIUM_FISH_CONTAINERS = TagKey.create(Registries.ITEM, Tide.resource("fish_containers/ventium"));
+        public static final TagKey<Item> JELLYFISH_NET_FISH_CONTAINERS = TagKey.create(Registries.ITEM, Tide.resource("fish_containers/jellyfish_net"));
     }
 
     public static class Blocks {

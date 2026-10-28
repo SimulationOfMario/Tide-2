@@ -1,5 +1,8 @@
 {
-  "bucket": "minecraft:cod_bucket",
+  "bucket": [
+    "minecraft:cod_bucket",
+    "aether:skyroot_cod_bucket"
+  ],
   "conditions": [
     {
       "type": "tide:dimension",

@@ -1,5 +1,8 @@
 {
-  "bucket": "minecraft:tropical_fish_bucket",
+  "bucket": [
+    "minecraft:tropical_fish_bucket",
+    "aether:skyroot_tropical_fish_bucket"
+  ],
   "conditions": [
     {
       "type": "tide:dimension",
