@@ -2,6 +2,7 @@
 package com.li64.tide.compat.fishingreal;
 
 import com.li64.tide.Tide;
+import com.li64.tide.compat.CompatHelper;
 import com.li64.tide.data.fishing.FishData;
 import com.li64.tide.datagen.fabric.providers.SimpleDataOutput;
 import com.li64.tide.datagen.fabric.providers.SimpleDataProvider;
@@ -18,7 +19,7 @@ import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class FishingRealConversions extends SimpleDataProvider<FishingConversion> {
-    private static final String MOD_ID = "fishingreal";
+    private static final String MOD_ID = CompatHelper.Namespace.FISHING_REAL;
 
     public FishingRealConversions(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super("fishing", output, registries);

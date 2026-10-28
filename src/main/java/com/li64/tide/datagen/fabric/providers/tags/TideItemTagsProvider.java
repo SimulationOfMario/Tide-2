@@ -2,6 +2,7 @@
 package com.li64.tide.datagen.fabric.providers.tags;
 
 import com.li64.tide.Tide;
+import com.li64.tide.compat.CompatHelper;
 import com.li64.tide.data.TideTags;
 import com.li64.tide.registries.TideFish;
 import com.li64.tide.registries.TideItems;
@@ -99,11 +100,11 @@ public class TideItemTagsProvider extends FabricTagProvider<Item> {
                 .add(TideItems.TWILIGHT_HOOK)
                 .add(TideItems.LAVAPROOF_HOOK)
                 .add(TideItems.VOID_HOOK)
-                .addOptional(Tide.resource("hybrid_aquatic", "barbed_hook"))
-                .addOptional(Tide.resource("hybrid_aquatic", "glowing_hook"))
-                .addOptional(Tide.resource("hybrid_aquatic", "magnetic_hook"))
-                .addOptional(Tide.resource("hybrid_aquatic", "creepermagnet_hook"))
-                .addOptional(Tide.resource("hybrid_aquatic", "ominous_hook"));
+                .addOptional(Tide.resource(CompatHelper.Namespace.HYBRID_AQUATIC, "barbed_hook"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.HYBRID_AQUATIC, "glowing_hook"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.HYBRID_AQUATIC, "magnetic_hook"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.HYBRID_AQUATIC, "creepermagnet_hook"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.HYBRID_AQUATIC, "ominous_hook"));
 
         getOrCreateTagBuilder(TideTags.Items.BAIT_ITEMS)
                 .add(TideItems.BAIT)
@@ -237,10 +238,10 @@ public class TideItemTagsProvider extends FabricTagProvider<Item> {
 
         /* Compat tags */
 
-        getOrCreateTagBuilder(TagKey.create(Registries.ITEM, Tide.resource("stardew_fishing", "starts_minigame")))
+        getOrCreateTagBuilder(TagKey.create(Registries.ITEM, Tide.resource(CompatHelper.Namespace.STARDEW_FISHING, "starts_minigame")))
                 .addTag(TideTags.Items.FISH);
 
-        getOrCreateTagBuilder(TagKey.create(Registries.ITEM, Tide.resource("stardew_fishing", "legendary_fish")))
+        getOrCreateTagBuilder(TagKey.create(Registries.ITEM, Tide.resource(CompatHelper.Namespace.STARDEW_FISHING, "legendary_fish")))
                 .addTag(TideTags.Items.LEGENDARY_FISH);
     }
 }

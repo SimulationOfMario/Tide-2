@@ -1,6 +1,7 @@
 package com.li64.tide.compat.netherdepths;
 
 import com.li64.tide.Tide;
+import com.li64.tide.compat.CompatHelper;
 import com.li64.tide.data.fishing.FishData;
 import com.li64.tide.data.fishing.MinigameBehavior;
 import com.li64.tide.data.fishing.mediums.FishingMedium;
@@ -13,7 +14,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
 
 public class NetherDepthsFishData {
-    public static final String MOD_ID = "netherdepthsupgrade";
+    public static final String MOD_ID = CompatHelper.Namespace.NETHER_DEPTHS_UPGRADE;
 
     private static final TagKey<Biome> IS_LAVA_PUFFERFISH_BIOME = TagKey.create(Registries.BIOME, Tide.resource(MOD_ID, "is_lava_pufferfish_biome"));
     private static final TagKey<Biome> IS_WITHER_BONEFISH_BIOME = TagKey.create(Registries.BIOME, Tide.resource(MOD_ID, "is_wither_bonefish_biome"));

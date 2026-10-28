@@ -424,7 +424,7 @@ public class TideFishingHook extends Projectile {
 
     private void catchingFish(BlockPos pos) {
         if (medium == null) return;
-        if (Tide.PLATFORM.isModLoaded("stardew_fishing")) {
+        if (CompatHelper.isStardewFishingLoaded()) {
             List<ItemStack> rewards = CompatHelper.stardewFishingGetRewards((HookAccessor) getPlayerOwner().fishing);
             if (!rewards.isEmpty()) return;
         }
@@ -525,7 +525,7 @@ public class TideFishingHook extends Projectile {
         else {
             this.timeUntilLured = (int) (Mth.nextInt(this.random, 200, 600) * this.medium.biteTimeMultiplier());
             this.timeUntilLured -= (int) (2000.0 / (1.0 + Math.exp(-0.2 * this.lureSpeed)) - 1000.0);
-            double globalBiteTimeMultiplier = Tide.PLATFORM.isModLoaded("stardew_fishing") ? CompatHelper.stardewFishingBiteTimeMultiplier() : 1.0;
+            double globalBiteTimeMultiplier = CompatHelper.isStardewFishingLoaded() ? CompatHelper.stardewFishingBiteTimeMultiplier() : 1.0;
             this.timeUntilLured = Math.max((int) (this.timeUntilLured * globalBiteTimeMultiplier), 10);
         }
     }

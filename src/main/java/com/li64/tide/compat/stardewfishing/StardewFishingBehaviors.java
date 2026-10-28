@@ -2,6 +2,7 @@
 package com.li64.tide.compat.stardewfishing;
 
 import com.li64.tide.Tide;
+import com.li64.tide.compat.CompatHelper;
 import com.li64.tide.data.fishing.FishData;
 import com.li64.tide.registries.TideFish;
 import com.mojang.serialization.Codec;
@@ -19,7 +20,7 @@ import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
 public class StardewFishingBehaviors implements DataProvider {
-    private final ResourceLocation LOCATION = Tide.resource("stardew_fishing", "fish_behaviors");
+    private final ResourceLocation LOCATION = Tide.resource(CompatHelper.Namespace.STARDEW_FISHING, "fish_behaviors");
     private final CompletableFuture<HolderLookup.Provider> registries;
     private final PackOutput.PathProvider pathProvider;
 

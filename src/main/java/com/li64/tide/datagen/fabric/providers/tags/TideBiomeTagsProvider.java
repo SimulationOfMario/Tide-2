@@ -2,6 +2,7 @@
 package com.li64.tide.datagen.fabric.providers.tags;
 
 import com.li64.tide.Tide;
+import com.li64.tide.compat.CompatHelper;
 import com.li64.tide.data.TideTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -48,7 +49,7 @@ public class TideBiomeTagsProvider extends FabricTagProvider<Biome> {
 
         getOrCreateTagBuilder(TideTags.Biomes.HAS_CHERRY_GROVE_FISH)
                 .add(Biomes.CHERRY_GROVE)
-                .addOptional(Tide.resource("biomesoplenty", "snowblossom_grove"));
+                .addOptional(Tide.resource(CompatHelper.Namespace.BIOMES_O_PLENTY, "snowblossom_grove"));
 
         getOrCreateTagBuilder(TideTags.Biomes.HAS_DEEP_DARK_FISH)
                 .add(Biomes.DEEP_DARK);
@@ -61,8 +62,8 @@ public class TideBiomeTagsProvider extends FabricTagProvider<Biome> {
         getOrCreateTagBuilder(TideTags.Biomes.HAS_DESERT_FISH)
                 .forceAddTag(TideTags.Convention.IS_DESERT)
                 .forceAddTag(TideTags.Convention.IS_BADLANDS)
-                .addOptional(Tide.resource("biomesoplenty", "dune_beach"))
-                .addOptional(Tide.resource("biomesoplenty", "lush_desert"));
+                .addOptional(Tide.resource(CompatHelper.Namespace.BIOMES_O_PLENTY, "dune_beach"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.BIOMES_O_PLENTY, "lush_desert"));
 
         getOrCreateTagBuilder(TideTags.Biomes.HAS_COASTAL_FISH)
                 .forceAddTag(BiomeTags.IS_BEACH)
@@ -79,20 +80,20 @@ public class TideBiomeTagsProvider extends FabricTagProvider<Biome> {
                 .add(Biomes.SNOWY_BEACH)
                 .add(Biomes.SNOWY_PLAINS)
                 .add(Biomes.ICE_SPIKES)
-                .addOptional(Tide.resource("biomesoplenty", "auroral_garden"))
-                .addOptional(Tide.resource("biomesoplenty", "cold_desert"))
-                .addOptional(Tide.resource("biomesoplenty", "tundra"))
-                .addOptional(Tide.resource("biomesoplenty", "wintry_origin_valley"))
-                .addOptional(Tide.resource("biomesoplenty", "snowy_coniferous_forest"))
-                .addOptional(Tide.resource("biomesoplenty", "snowy_fir_clearing"))
-                .addOptional(Tide.resource("biomesoplenty", "snowy_maple_woods"));
+                .addOptional(Tide.resource(CompatHelper.Namespace.BIOMES_O_PLENTY, "auroral_garden"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.BIOMES_O_PLENTY, "cold_desert"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.BIOMES_O_PLENTY, "tundra"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.BIOMES_O_PLENTY, "wintry_origin_valley"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.BIOMES_O_PLENTY, "snowy_coniferous_forest"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.BIOMES_O_PLENTY, "snowy_fir_clearing"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.BIOMES_O_PLENTY, "snowy_maple_woods"));
 
         getOrCreateTagBuilder(TideTags.Biomes.HAS_JUNGLE_FISH)
                 .forceAddTag(TideTags.Convention.IS_JUNGLE)
-                .addOptional(Tide.resource("biomesoplenty", "floodplain"))
-                .addOptional(Tide.resource("biomesoplenty", "rainforest"))
-                .addOptional(Tide.resource("biomesoplenty", "rocky_rainforest"))
-                .addOptional(Tide.resource("biomesoplenty", "tropics"));
+                .addOptional(Tide.resource(CompatHelper.Namespace.BIOMES_O_PLENTY, "floodplain"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.BIOMES_O_PLENTY, "rainforest"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.BIOMES_O_PLENTY, "rocky_rainforest"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.BIOMES_O_PLENTY, "tropics"));
 
         getOrCreateTagBuilder(TideTags.Biomes.HAS_MOUNTAIN_FISH)
                 .forceAddTag(TideTags.Convention.IS_MOUNTAIN)
@@ -100,16 +101,16 @@ public class TideBiomeTagsProvider extends FabricTagProvider<Biome> {
 
         getOrCreateTagBuilder(TideTags.Biomes.HAS_MUSHROOM_FISH)
                 .forceAddTag(TideTags.Convention.IS_MUSHROOM)
-                .addOptional(Tide.resource("biomesoplenty", "fungal_jungle"));
+                .addOptional(Tide.resource(CompatHelper.Namespace.BIOMES_O_PLENTY, "fungal_jungle"));
 
         getOrCreateTagBuilder(TideTags.Biomes.HAS_SWAMP_FISH)
                 .forceAddTag(TideTags.Convention.IS_SWAMP)
-                .addOptional(Tide.resource("hybrid_aquatic", "swamp"))
-                .addOptional(Tide.resource("hybrid_aquatic", "mangroves"))
-                .addOptional(Tide.resource("hybrid_aquatic", "marshes"))
-                .addOptional(Tide.resource("biomesoplenty", "bayou"))
-                .addOptional(Tide.resource("biomesoplenty", "bog"))
-                .addOptional(Tide.resource("biomesoplenty", "marsh"));
+                .addOptional(Tide.resource(CompatHelper.Namespace.HYBRID_AQUATIC, "swamp"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.HYBRID_AQUATIC, "mangroves"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.HYBRID_AQUATIC, "marshes"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.BIOMES_O_PLENTY, "bayou"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.BIOMES_O_PLENTY, "bog"))
+                .addOptional(Tide.resource(CompatHelper.Namespace.BIOMES_O_PLENTY, "marsh"));
 
         getOrCreateTagBuilder(TideTags.Biomes.THE_VOID)
                 .add(Biomes.THE_VOID);

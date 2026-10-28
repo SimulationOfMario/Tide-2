@@ -2,6 +2,7 @@
 package com.li64.tide.compat.stardewfishing;
 
 import com.li64.tide.Tide;
+import com.li64.tide.compat.CompatHelper;
 import com.li64.tide.data.fishing.FishData;
 import com.li64.tide.data.journal.FishRarity;
 import com.li64.tide.data.journal.JournalGroup;
@@ -11,7 +12,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
 
 public class StardewFishingFishData {
-    public static final String MOD_ID = "stardew_fishing";
+    public static final String MOD_ID = CompatHelper.Namespace.STARDEW_FISHING;
 
     private static final TagKey<Biome> HAS_RIVER_FISH = TagKey.create(Registries.BIOME, Tide.resource(MOD_ID, "has_river_fish"));
     private static final TagKey<Biome> HAS_NORMAL_OCEAN_FISH = TagKey.create(Registries.BIOME, Tide.resource(MOD_ID, "has_normal_ocean_fish"));

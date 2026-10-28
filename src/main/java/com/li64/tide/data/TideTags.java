@@ -1,6 +1,7 @@
 package com.li64.tide.data;
 
 import com.li64.tide.Tide;
+import com.li64.tide.compat.CompatHelper;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -31,8 +32,8 @@ public class TideTags {
         public static final TagKey<Item> CRATES = TagKey.create(Registries.ITEM, Tide.resource("crates"));
 
         public static final TagKey<Item> INFORMATIONAL = TagKey.create(Registries.ITEM, Tide.resource("informational"));
-        public static final TagKey<Item> TRINKETS_INFORMATIONAL = TagKey.create(Registries.ITEM, Tide.resource("trinkets", "hand/informational"));
-        public static final TagKey<Item> CURIOS_INFORMATIONAL = TagKey.create(Registries.ITEM, Tide.resource("curios", "informational"));
+        public static final TagKey<Item> TRINKETS_INFORMATIONAL = TagKey.create(Registries.ITEM, Tide.resource(CompatHelper.Namespace.TRINKETS, "hand/informational"));
+        public static final TagKey<Item> CURIOS_INFORMATIONAL = TagKey.create(Registries.ITEM, Tide.resource(CompatHelper.Namespace.CURIOS, "informational"));
 
         public static final TagKey<Item> FISHING_RODS = TagKey.create(Registries.ITEM, Tide.resource("fishing_rods"));
         public static final TagKey<Item> BOBBERS = TagKey.create(Registries.ITEM, Tide.resource("bobbers"));

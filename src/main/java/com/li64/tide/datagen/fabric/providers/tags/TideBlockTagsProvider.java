@@ -2,6 +2,7 @@
 package com.li64.tide.datagen.fabric.providers.tags;
 
 import com.li64.tide.Tide;
+import com.li64.tide.compat.CompatHelper;
 import com.li64.tide.data.TideTags;
 import com.li64.tide.registries.TideBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -52,7 +53,7 @@ public class TideBlockTagsProvider extends FabricTagProvider<Block> {
                 .add(TideBlocks.OBSIDIAN_CRATE);
 
         getOrCreateTagBuilder(TagKey.create(Registries.BLOCK,
-                Tide.resource("visualworkbench", "unaltered_workbenches")))
+                Tide.resource(CompatHelper.Namespace.VISUAL_WORKBENCH, "unaltered_workbenches")))
                 .add(TideBlocks.ANGLING_TABLE);
     }
 }

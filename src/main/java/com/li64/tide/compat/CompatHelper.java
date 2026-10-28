@@ -30,10 +30,24 @@ import com.li64.tide.compat.accessories.CuriosCompat;
 *///?}
 
 public class CompatHelper {
+
+    public static class Namespace {
+        public static final String HYBRID_AQUATIC = "hybrid_aquatic";
+        public static final String NETHER_DEPTHS_UPGRADE = "netherdepthsupgrade";
+        public static final String STARCATCHER  = "starcatcher";
+        public static final String STARDEW_FISHING = "stardew_fishing";
+        public static final String FISHING_REAL = "fishingreal";
+        public static final String TRINKETS = "trinkets";
+        public static final String CURIOS = "curios";
+        public static final String BIOMES_O_PLENTY = "biomesoplenty";
+        public static final String VISUAL_WORKBENCH = "visualworkbench";
+        public static final String ALEXS_MOBS = "alexsmobs";
+    }
+
     // -- hybrid aquatic --
 
     public static boolean isHybridAquaticLoaded() {
-        return Tide.PLATFORM.isModLoaded("hybrid_aquatic");
+        return Tide.PLATFORM.isModLoaded(Namespace.HYBRID_AQUATIC);
     }
 
     public static Entity hybridAquaticPullEntity(ItemEntity itemEntity, Player player, TideFishingHook hook) {
@@ -47,7 +61,7 @@ public class CompatHelper {
     // -- starcatcher --
 
     public static boolean useStarcatcherMinigame() {
-        return Tide.PLATFORM.isModLoaded("starcatcher") && Tide.SERVER_CONFIG.minigame.useThirdPartyMinigames;
+        return Tide.PLATFORM.isModLoaded(Namespace.STARCATCHER) && Tide.SERVER_CONFIG.minigame.useThirdPartyMinigames;
     }
 
     public static boolean starcatcherStartMinigame(ServerPlayer player, HookAccessor hook, ItemStack rod, List<ItemStack> hookedItems) {
@@ -62,8 +76,12 @@ public class CompatHelper {
 
     // -- stardew fishing --
 
+    public static boolean isStardewFishingLoaded() {
+        return Tide.PLATFORM.isModLoaded(Namespace.STARDEW_FISHING);
+    }
+
     public static boolean useStardewMinigame() {
-        return Tide.PLATFORM.isModLoaded("stardew_fishing") && Tide.SERVER_CONFIG.minigame.useThirdPartyMinigames;
+        return Tide.PLATFORM.isModLoaded(Namespace.STARDEW_FISHING) && Tide.SERVER_CONFIG.minigame.useThirdPartyMinigames;
     }
 
     public static boolean stardewFishingStartMinigame(ServerPlayer player, HookAccessor hook, ItemStack rod, List<ItemStack> hookedItems) {
@@ -84,7 +102,7 @@ public class CompatHelper {
     // -- fishing real --
 
     public static boolean isFishingRealLoaded() {
-        return Tide.PLATFORM.isModLoaded("fishingreal");
+        return Tide.PLATFORM.isModLoaded(Namespace.FISHING_REAL);
     }
 
     public static Entity fishingRealConvertItemStack(ItemStack stack, Player player, Vec3 pos) {
@@ -98,14 +116,14 @@ public class CompatHelper {
     // -- curios/trinkets --
 
     public static void addInformationItemsFromAccessories(Player player, ArrayList<Item> items) {
-        /*? if fabric {*/if (Tide.PLATFORM.isModLoaded("trinkets")) TrinketsCompat.addInformationalItems(player, items);
-        /*?} else*//*if (Tide.PLATFORM.isModLoaded("curios")) CuriosCompat.addInformationalItems(player, items);*/
+        /*? if fabric {*/if (Tide.PLATFORM.isModLoaded(Namespace.TRINKETS)) TrinketsCompat.addInformationalItems(player, items);
+        /*?} else*//*if (Tide.PLATFORM.isModLoaded(Namespace.CURIOS)) CuriosCompat.addInformationalItems(player, items);*/
     }
 
     // -- alex's mobs --
 
     public static boolean isAlexsMobsLoaded() {
-        return Tide.PLATFORM.isModLoaded("alexsmobs");
+        return Tide.PLATFORM.isModLoaded(Namespace.ALEXS_MOBS);
     }
 
     public static boolean alexsMobsIsInPupfishChunk(FishingContext context) {

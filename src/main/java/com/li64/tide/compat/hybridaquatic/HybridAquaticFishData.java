@@ -2,6 +2,7 @@
 package com.li64.tide.compat.hybridaquatic;
 
 import com.li64.tide.Tide;
+import com.li64.tide.compat.CompatHelper;
 import com.li64.tide.data.TideTags;
 import com.li64.tide.data.fishing.FishData;
 import com.li64.tide.data.fishing.MinigameBehavior;
@@ -14,7 +15,7 @@ import com.li64.tide.registries.blocks.FishDisplayShape;
 import java.util.List;
 
 public class HybridAquaticFishData {
-    public static final String MOD_ID = "hybrid_aquatic";
+    public static final String MOD_ID = CompatHelper.Namespace.HYBRID_AQUATIC;
 
     public static void generate(SimpleDataOutput<FishData> output) {
         FishData.builder().fish(MOD_ID, "anglerfish")

@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import java.util.HashMap;
 import java.util.Map;
 //?}
+/*? if neoforge*/ /*import com.li64.tide.compat.CompatHelper;*/
 
 public class TideMessages {
     /*? if >=1.21*/public static final Map<ResourceLocation, CustomPacketPayload.Type<? extends CustomPacketPayload>> ID_TO_TYPE = new HashMap<>();
@@ -23,7 +24,7 @@ public class TideMessages {
         network.registerClientBoundPacket(ShowToastMsg.class, ShowToastMsg.ID, ShowToastMsg::encode, ShowToastMsg::new, ShowToastMsg::handle);
         network.registerClientBoundPacket(SyncDataMsg.class, SyncDataMsg.ID, SyncDataMsg::encode, SyncDataMsg::new, SyncDataMsg::handle);
 
-        /*? if neoforge*/ /*if (Tide.PLATFORM.isModLoaded("starcatcher")) network.registerClientBoundPacket(StarcatcherStartMinigameMsg.class, StarcatcherStartMinigameMsg.ID, StarcatcherStartMinigameMsg::encode, StarcatcherStartMinigameMsg::new, StarcatcherStartMinigameMsg::handle);*/
+        /*? if neoforge*/ /*if (Tide.PLATFORM.isModLoaded(CompatHelper.Namespace.STARCATCHER)) network.registerClientBoundPacket(StarcatcherStartMinigameMsg.class, StarcatcherStartMinigameMsg.ID, StarcatcherStartMinigameMsg::encode, StarcatcherStartMinigameMsg::new, StarcatcherStartMinigameMsg::handle);*/
 
         network.registerServerBoundPacket(MinigameServerMsg.class, MinigameServerMsg.ID, MinigameServerMsg::encode, MinigameServerMsg::new, MinigameServerMsg::handle);
         network.registerServerBoundPacket(ReadProfileMsg.class, ReadProfileMsg.ID, ReadProfileMsg::encode, ReadProfileMsg::new, ReadProfileMsg::handle);

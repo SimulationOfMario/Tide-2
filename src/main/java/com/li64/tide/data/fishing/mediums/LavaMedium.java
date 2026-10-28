@@ -1,6 +1,7 @@
 package com.li64.tide.data.fishing.mediums;
 
 import com.li64.tide.Tide;
+import com.li64.tide.compat.CompatHelper;
 import com.li64.tide.registries.entities.misc.fishing.TideFishingHook;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -75,7 +76,7 @@ public class LavaMedium implements FishingMedium {
 
         RandomSource random = hook.getRandom();
         hook.playSound(SoundEvents.BUCKET_EMPTY_LAVA, 0.25f, 1.0f + (random.nextFloat() - random.nextFloat()) * 0.4f);
-        if (Tide.PLATFORM.isModLoaded("stardew_fishing")) hook.playSound(SoundEvents.FISHING_BOBBER_SPLASH, 0.25f, 1.0f + (random.nextFloat() - random.nextFloat()) * 0.4f);
+        if (CompatHelper.isStardewFishingLoaded()) hook.playSound(SoundEvents.FISHING_BOBBER_SPLASH, 0.25f, 1.0f + (random.nextFloat() - random.nextFloat()) * 0.4f);
 
         double y = hook.getY() + 0.5;
         level.sendParticles(ParticleTypes.LAVA, hook.getX(), y, hook.getZ(), (int) (1.0f + hook.getBbWidth() * 20.0f), hook.getBbWidth(), 0.0, hook.getBbWidth(), 0.2);
