@@ -224,7 +224,7 @@ public class TideChestLootProvider extends TideAbstractLootProvider {
                         .add(LootItem.lootTableItem(Items.ENDER_PEARL).setWeight(65))
                         .add(LootItem.lootTableItem(Items.POPPED_CHORUS_FRUIT).setWeight(55))
                         .add(LootItem.lootTableItem(Items.SHULKER_SHELL).setWeight(35).setQuality(1))
-                        .add(LootItem.lootTableItem(Items.ELYTRA).setWeight(7).setQuality(2)
+                        .add(LootItem.lootTableItem(Items.ELYTRA).setWeight(2)
                                 .apply(EnchantWithLevelsFunction.enchantWithLevels(/*? if >=1.21 {*/this.registries, /*?}*/ConstantValue.exactly(15))
                                         .when(LootItemRandomChanceCondition.randomChance(0.5f)))
                         )

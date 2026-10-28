@@ -57,8 +57,7 @@
             }
           ],
           "name": "minecraft:elytra",
-          "quality": 2,
-          "weight": 7
+          "weight": 2
         }
       ],
       "rolls": {
