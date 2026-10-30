@@ -29,9 +29,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 //? if >=1.21 {
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.component.CustomData;
-//?}
+//?} else {
+/*import java.util.Objects;
+*///?}
 
-import java.util.Objects;
 import java.util.Optional;
 
 @Mixin(Item.class)
@@ -69,7 +70,7 @@ public abstract class ItemMixin {
         if (result == null) return false;
 
         ItemStack newStack = new ItemStack(result);
-        // keep the container's own data, like the durability and enchantments of a jellyfish net
+        // Keep the container's own data, like the durability and enchantments of a jellyfish net
         /*? if >=1.21 {*/
         newStack.applyComponents(container.getComponentsPatch());
         /*?} else*/
@@ -107,14 +108,14 @@ public abstract class ItemMixin {
     private static @Nullable Item tide$findContainerResult(FishData data, Item held) {
         Optional<TagKey<Item>> heldMaterial = tide$getContainerMaterial(held);
 
-        // anything that isn't a bucket needs a material tag, otherwise any item could hold fish
+        // Anything that isn't a bucket needs a material tag, otherwise any item could hold fish
         if (!(held instanceof BucketItem) && heldMaterial.isEmpty()) return null;
 
         Fluid heldFluid = tide$getContainedFluid(held);
-        for (Holder<Item> holder : data.buckets()) {
-            Item candidate = holder.value();
+        for (Holder<Item> bucket : data.buckets()) {
+            Item candidate = bucket.value();
             if (tide$getContainerMaterial(candidate).equals(heldMaterial)
-                    && tide$getContainedFluid(candidate).isSame(heldFluid)) return candidate;
+                && tide$getContainedFluid(candidate).isSame(heldFluid)) return candidate;
         }
         return null;
     }
@@ -125,15 +126,14 @@ public abstract class ItemMixin {
         return item.builtInRegistryHolder().tags()
             .filter(tag ->
                 tag.location().getNamespace().equals(Tide.MOD_ID) &&
-                tag.location().getPath().startsWith("fish_containers/")
-            )
+                tag.location().getPath().startsWith("fish_containers/"))
             .findFirst();
     }
 
-    // Items that aren't buckets count as holding no fluid
     @Unique
     private static Fluid tide$getContainedFluid(Item item) {
         Fluid fluid = item instanceof BucketItem bucket ? tide$getFluid(bucket) : null;
+        // Items that aren't buckets count as holding no fluid
         return fluid != null ? fluid : Fluids.EMPTY;
     }
 
